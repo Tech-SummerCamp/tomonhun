@@ -6,22 +6,35 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "format": "prettier --write --plugin=prettier-plugin-organize-imports .",
+    "format:check": "prettier --check --plugin=prettier-plugin-organize-imports .",
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
+    "next": "14.2.11",
     "react": "^18",
-    "react-dom": "^18",
-    "next": "14.2.11"
+    "react-dom": "^18"
   },
   "devDependencies": {
-    "typescript": "^5",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "postcss": "^8",
-    "tailwindcss": "^3.4.1",
     "eslint": "^8",
-    "eslint-config-next": "14.2.11"
+    "eslint-config-next": "14.2.11",
+    "eslint-config-prettier": "^9.1.0",
+    "lefthook": "^1.7.15",
+    "postcss": "^8",
+    "prettier": "^3.3.3",
+    "prettier-plugin-embed": "^0.4.15",
+    "prettier-plugin-organize-imports": "^4.0.0",
+    "prettier-plugin-sql": "^0.18.1",
+    "prettier-plugin-tailwindcss": "^0.6.6",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5"
   },
-  "packageManager": "pnpm@9.8.0+sha512.8e4c3550fb500e808dbc30bb0ce4dd1eb614e30b1c55245f211591ec2cdf9c611cabd34e1364b42f564bd54b3945ed0f49d61d1bbf2ec9bd74b866fcdc723276"
+  "packageManager": "pnpm@9.10.0+sha512.73a29afa36a0d092ece5271de5177ecbf8318d454ecd701343131b8ebc0c1a91c487da46ab77c8e596d6acf1461e3594ced4becedf8921b074fbd8653ed7051c",
+  "engines": {
+    "node": "^20"
+  }
 }
