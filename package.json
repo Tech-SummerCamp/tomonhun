@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "format": "prettier --write --plugin=prettier-plugin-organize-imports .",
+    "format:check": "prettier --check --plugin=prettier-plugin-organize-imports ."
   },
   "dependencies": {
     "next": "14.2.11",
