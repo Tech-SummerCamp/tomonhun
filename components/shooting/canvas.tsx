@@ -3,13 +3,27 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 
 import * as Three from 'three';
+import * as TWEEN from '@tweenjs/tween.js';
 import type { Avatar } from '../../lib/shooting/avatar';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import { DeviceOrientationControls } from '../../lib/shooting/DeviceOrientationControls';
 
 type Avatar3DObject = Avatar & {
   isDestroyed: boolean,
   mesh: Three.Mesh
 };
+
+function floatAnimation(mesh: Three.Mesh, group: TWEEN.Group) {
+  const tween = new TWEEN.Tween(mesh.position)
+    .to({ y: mesh.position.y + Math.random() * 200 - 100 }, 2000)
+    .easing(TWEEN.Easing.Quadratic.InOut)
+    .onUpdate((p) => {
+      mesh.position.y = p.y;
+    })
+    .onComplete(() => floatAnimation(mesh, group))
+    .start();
+  group.add(tween);
+}
 
 export function ThreeJSDemo({ avatars }: { avatars: Avatar[] }) {
   const mountRef = useRef<HTMLDivElement>(null);
@@ -19,7 +33,8 @@ export function ThreeJSDemo({ avatars }: { avatars: Avatar[] }) {
   const raycasterRef = useRef<Three.Raycaster>();
   const pointerRef = useRef<Three.Vector2>();
   const objects = useRef<Avatar3DObject[]>()
-  const controlsRef = useRef<OrbitControls>()
+  const controlsRef = useRef<DeviceOrientationControls | OrbitControls>()
+  const tweenGroupRef = useRef<TWEEN.Group>()
 
   useEffect(() => {
     if (!avatars) return;
@@ -27,6 +42,8 @@ export function ThreeJSDemo({ avatars }: { avatars: Avatar[] }) {
 
     const w = window.innerWidth;
     const h = window.innerHeight;
+
+    tweenGroupRef.current = new TWEEN.Group();
 
     rendererRef.current = new Three.WebGLRenderer();
 
@@ -45,16 +62,22 @@ export function ThreeJSDemo({ avatars }: { avatars: Avatar[] }) {
 
 
     const camera = new Three.PerspectiveCamera(45, w / h, 1, 10000);
-    camera.position.set(0, 0, +1000);
+    camera.position.set(0, 0, 1000);
     cameraRef.current = camera;
-    controlsRef.current = new OrbitControls(camera, rendererRef.current.domElement);
+    if (/Mobi|Android/i.test(navigator.userAgent)) {
+      console.log('DeviceOrientation is supported');
+      controlsRef.current = new DeviceOrientationControls(camera);
+    } else {
+      console.log('DeviceOrientation is not supported');
+      controlsRef.current = new OrbitControls(camera, rendererRef.current.domElement);
+    }
     controlsRef.current.update();
 
     for (const avatar of objects.current) {
       const loader = new Three.TextureLoader();
 
       loader.load(avatar.imageUrl, (texture) => {
-        if (!sceneRef.current) return;
+        if (!sceneRef.current || !tweenGroupRef.current) return;
         texture.type = Three.FloatType;
         const geometry = new Three.PlaneGeometry(texture.image.width, texture.image.height);
         const material = new Three.MeshBasicMaterial({
@@ -64,12 +87,14 @@ export function ThreeJSDemo({ avatars }: { avatars: Avatar[] }) {
         });
         // textureのサイズ取得
         const mesh = new Three.Mesh(geometry, material);
-        mesh.quaternion.copy(camera.quaternion);
+        mesh.position.set((Math.random() * 5000) - 2500, (Math.random() * 5000) - 2500, (Math.random() * 5000) - 2500);
+        mesh.lookAt(camera.position);
         // 背面表示
         mesh.material.side = Three.DoubleSide;
 
         avatar.mesh = mesh;
         sceneRef.current.add(mesh);
+        floatAnimation(avatar.mesh, tweenGroupRef.current);
       });
     }
 
@@ -86,14 +111,9 @@ export function ThreeJSDemo({ avatars }: { avatars: Avatar[] }) {
     window.addEventListener("resize", handleResize);
 
     const tick = () => {
-      if (objects.current) {
-        // camera.rotation.x += 0.01;
-        // mesh.rotation.y += 0.01;
-        // for (const avatar of objects.current) {
-        //   if (avatar.mesh) {
-        //     avatar.mesh.quaternion.copy(camera.quaternion);
-        //   }
-        // }
+      if (tweenGroupRef.current) {
+        // ふわふわの処理
+        tweenGroupRef.current.update();
       }
       if (controlsRef.current) {
         controlsRef.current.update();
@@ -109,7 +129,9 @@ export function ThreeJSDemo({ avatars }: { avatars: Avatar[] }) {
 
     return () => {
       window.removeEventListener("resize", handleResize);
-      elm?.removeChild(rendererRef.current!.domElement);
+      if (rendererRef.current) {
+        elm?.removeChild(rendererRef.current.domElement);
+      }
     };
   }, [avatars]);
 
