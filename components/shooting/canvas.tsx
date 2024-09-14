@@ -7,6 +7,7 @@ import * as TWEEN from '@tweenjs/tween.js';
 import type { Avatar } from '../../lib/shooting/avatar';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { DeviceOrientationControls } from '../../lib/shooting/DeviceOrientationControls';
+import { Video } from './Camera';
 
 type Avatar3DObject = Avatar & {
   isDestroyed: boolean,
@@ -45,7 +46,9 @@ export function ThreeJSDemo({ avatars }: { avatars: Avatar[] }) {
 
     tweenGroupRef.current = new TWEEN.Group();
 
-    rendererRef.current = new Three.WebGLRenderer();
+    rendererRef.current = new Three.WebGLRenderer({
+      alpha: true,
+    });
 
     const elm = mountRef.current;
 
@@ -53,7 +56,8 @@ export function ThreeJSDemo({ avatars }: { avatars: Avatar[] }) {
 
     rendererRef.current.setPixelRatio(window.devicePixelRatio);
     rendererRef.current.setSize(w, h);
-    rendererRef.current.setClearColor(0xffffff);
+    rendererRef.current.setClearColor(0x000000, 0);
+    // rendererRef.current.setClearColor(0xffffff);
 
     sceneRef.current = new Three.Scene();
 
@@ -151,6 +155,10 @@ export function ThreeJSDemo({ avatars }: { avatars: Avatar[] }) {
   };
 
   return (
-    <div ref={mountRef} onPointerDown={handlePointerDown} className='bg-transparent' />
+    <div>
+      <Video className='fixed top-0 left-0' style={{ position: "fixed", left: 0, top: 0 }} />
+      <div ref={mountRef} onPointerDown={handlePointerDown} className='bg-transparent fixed top-0 left-0'
+        style={{ position: "fixed", left: 0, top: 0 }} />
+    </div>
   );
 }
