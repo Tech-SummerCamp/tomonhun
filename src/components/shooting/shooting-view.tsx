@@ -13,7 +13,7 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import type { Avatar } from '@/lib/shooting/avatar';
-import { createTextTexture } from '@/lib/shooting/createTextTexture';
+import { createTextTexture } from '@/lib/shooting/create-text-texture';
 import { DeviceOrientationControls } from '@/lib/shooting/device-orientation-controls';
 import { cn } from '@/lib/utils';
 import * as TWEEN from '@tweenjs/tween.js';
