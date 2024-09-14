@@ -8,7 +8,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     TwitterProvider({
       clientId: process.env.TWITTER_CLIENT_ID!,
       clientSecret: process.env.TWITTER_CLIENT_SECRET!,
-      version: "2.0",
+      // version: "2.0",
     }),
   ],
   adapter: PrismaAdapter(prisma),
@@ -17,19 +17,19 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     strategy: "jwt",
   },
   debug: true,
-  callbacks: {
-    async session({ session, token, user }) {
-      if (session.user) {
-        session.user.id = user.id;
-        session.user.twitterId = user.twitterId;
-      }
-      return session;
-    },
-    async jwt({ token, user, account, profile, isNewUser }) {
-      if (account?.providerAccountId) {
-        token.twitterId = account.providerAccountId;
-      }
-      return token;
-    },
-  },
+  // callbacks: {
+  //   async session({ session, token, user }) {
+  //     if (session.user) {
+  //       session.user.id = user.id;
+  //       session.user.twitterId = user.twitterId;
+  //     }
+  //     return session;
+  //   },
+  //   async jwt({ token, user, account, profile, isNewUser }) {
+  //     if (account?.providerAccountId) {
+  //       token.twitterId = account.providerAccountId;
+  //     }
+  //     return token;
+  //   },
+  // },
 });
