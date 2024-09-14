@@ -1,5 +1,5 @@
 export type Avatar = {
-	name: string;
+  name: string;
   imageUrl: string;
   message: string;
-}
+};

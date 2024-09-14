@@ -1,8 +1,16 @@
-"use client"
+'use client';
 
-import { type CSSProperties, useEffect, useRef } from "react";
+import { type CSSProperties, useEffect, useRef } from 'react';
 
-export function Video({ className, style, disable }: { className?: string, style?: CSSProperties, disable?: boolean }) {
+export function Video({
+  className,
+  style,
+  disable,
+}: {
+  className?: string;
+  style?: CSSProperties;
+  disable?: boolean;
+}) {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
@@ -16,7 +24,7 @@ export function Video({ className, style, disable }: { className?: string, style
         audio: false,
         video: {
           deviceId: videoInput?.map((device) => device.deviceId),
-          facingMode: "environment",
+          facingMode: 'environment',
           width: { min: 1280, max: 1920 },
           height: { min: 720, max: 1080 },
         },
@@ -39,7 +47,7 @@ export function Video({ className, style, disable }: { className?: string, style
         .catch((error) => {
           console.log(error);
           alert(
-            "カメラの使用が拒否されています。\nページを再読み込みして使用を許可するか、ブラウザの設定をご確認ください。"
+            'カメラの使用が拒否されています。\nページを再読み込みして使用を許可するか、ブラウザの設定をご確認ください。',
           );
         });
     };
@@ -48,7 +56,7 @@ export function Video({ className, style, disable }: { className?: string, style
       navigator.mediaDevices
         .enumerateDevices()
         .then((devices) => {
-          videoInput = devices.filter((device) => device.kind === "videoinput");
+          videoInput = devices.filter((device) => device.kind === 'videoinput');
           getVideo();
         })
         .catch((error) => {
@@ -61,9 +69,9 @@ export function Video({ className, style, disable }: { className?: string, style
       initVideo();
     };
     initVideo();
-  }, [disable])
+  }, [disable]);
 
   return (
     <video ref={videoRef} className={className} playsInline style={style} />
-  )
+  );
 }
