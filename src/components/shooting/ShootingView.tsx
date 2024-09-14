@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 
+import { Button } from '@/components/ui/button';
 import {
   Dialog,
   DialogClose,
@@ -17,7 +18,6 @@ import { DeviceOrientationControls } from '@/lib/shooting/DeviceOrientationContr
 import * as TWEEN from '@tweenjs/tween.js';
 import * as Three from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-import { Button } from '../ui/button';
 import { Video } from './Camera';
 import { StockView } from './StockView';
 
