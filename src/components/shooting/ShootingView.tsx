@@ -15,6 +15,7 @@ import {
 import type { Avatar } from '@/lib/shooting/avatar';
 import { createTextTexture } from '@/lib/shooting/createTextTexture';
 import { DeviceOrientationControls } from '@/lib/shooting/DeviceOrientationControls';
+import { cn } from '@/lib/utils';
 import * as TWEEN from '@tweenjs/tween.js';
 import * as Three from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
@@ -89,7 +90,7 @@ export function ShootingView({ avatars }: { avatars: Avatar[] }) {
     pointerRef.current = new Three.Vector2();
 
     const camera = new Three.PerspectiveCamera(45, w / h, 1, 10000);
-    camera.position.set(1, 1, 1);
+    camera.position.set(0, 0, 5000);
     cameraRef.current = camera;
     if (/Mobi|Android/i.test(navigator.userAgent)) {
       console.log('DeviceOrientation is supported');
@@ -242,14 +243,15 @@ export function ShootingView({ avatars }: { avatars: Avatar[] }) {
     <>
       <Video
         disable={!orientationSupported}
-        className={!orientationSupported ? 'hidden' : ''}
-        style={{ position: 'fixed', left: 0, top: 0 }}
+        className={cn(
+          'fixed top-0 left-0',
+          !orientationSupported ? 'hidden' : '',
+        )}
       />
       <div
         ref={mountRef}
         onPointerDown={handlePointerDown}
         className='bg-transparent fixed top-0 left-0'
-        style={{ position: 'fixed', left: 0, top: 0 }}
       />
       <StockView avatars={stock} />
 
