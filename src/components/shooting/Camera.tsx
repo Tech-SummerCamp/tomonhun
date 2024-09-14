@@ -2,12 +2,12 @@
 
 import { type CSSProperties, useEffect, useRef } from "react";
 
-export function Video({ className, style }: { className?: string, style?: CSSProperties }) {
+export function Video({ className, style, disable }: { className?: string, style?: CSSProperties, disable?: boolean }) {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     const video = videoRef.current;
-    if (video === null) return;
+    if (video === null || disable) return;
     let videoInput: MediaDeviceInfo[] | null = null;
     let videoStream: MediaStream | null = null;
 
@@ -61,7 +61,7 @@ export function Video({ className, style }: { className?: string, style?: CSSPro
       initVideo();
     };
     initVideo();
-  }, [])
+  }, [disable])
 
   return (
     <video ref={videoRef} className={className} playsInline style={style} />

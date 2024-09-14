@@ -1,5 +1,5 @@
-import { ShootingView } from "../../../components/shooting/ShootingView";
-import type { Avatar } from "../../../lib/shooting/avatar";
+import { ShootingView } from "../../components/shooting/ShootingView";
+import type { Avatar } from "../../lib/shooting/avatar";
 
 // TODO: データベースから取得
 const avatarsData: Avatar[] = [

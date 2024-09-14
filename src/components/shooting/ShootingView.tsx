@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import * as Three from 'three';
 import * as TWEEN from '@tweenjs/tween.js';
@@ -14,14 +14,14 @@ type Avatar3DObject = Avatar & {
   mesh: Three.Mesh
 };
 
-function floatAnimation(mesh: Three.Mesh, group: TWEEN.Group) {
+function floatAnimation(mesh: Three.Mesh, group: TWEEN.Group, sign?: number) {
   const tween = new TWEEN.Tween(mesh.position)
-    .to({ y: mesh.position.y + Math.random() * 500 - 250 }, 2000)
+    .to({ y: mesh.position.y + Math.random() * 200 * (sign || 1) }, Math.random() * 3000 + 2000)
     .easing(TWEEN.Easing.Quadratic.InOut)
     .onUpdate((p) => {
       mesh.position.y = p.y;
     })
-    .onComplete(() => floatAnimation(mesh, group))
+    .onComplete(() => floatAnimation(mesh, group, -(sign || 1)))
     .start();
   group.add(tween);
 }
@@ -36,6 +36,7 @@ export function ShootingView({ avatars }: { avatars: Avatar[] }) {
   const objects = useRef<Avatar3DObject[]>()
   const controlsRef = useRef<DeviceOrientationControls | OrbitControls>()
   const tweenGroupRef = useRef<TWEEN.Group>()
+  const [orientationSupported, setOrientationSupported] = useState(false);
 
   useEffect(() => {
     if (!avatars) return;
@@ -56,8 +57,6 @@ export function ShootingView({ avatars }: { avatars: Avatar[] }) {
 
     rendererRef.current.setPixelRatio(window.devicePixelRatio);
     rendererRef.current.setSize(w, h);
-    rendererRef.current.setClearColor(0x000000, 0);
-    // rendererRef.current.setClearColor(0xffffff);
 
     sceneRef.current = new Three.Scene();
 
@@ -70,10 +69,13 @@ export function ShootingView({ avatars }: { avatars: Avatar[] }) {
     cameraRef.current = camera;
     if (/Mobi|Android/i.test(navigator.userAgent)) {
       console.log('DeviceOrientation is supported');
+      setOrientationSupported(true)
       controlsRef.current = new DeviceOrientationControls(camera);
+      rendererRef.current.setClearColor(0x000000, 0);
     } else {
       console.log('DeviceOrientation is not supported');
       controlsRef.current = new OrbitControls(camera, rendererRef.current.domElement);
+      rendererRef.current.setClearColor(0xffffff);
     }
     controlsRef.current.update();
 
@@ -156,7 +158,7 @@ export function ShootingView({ avatars }: { avatars: Avatar[] }) {
 
   return (
     <div>
-      <Video className='fixed top-0 left-0' style={{ position: "fixed", left: 0, top: 0 }} />
+      <Video disable={!orientationSupported} className={!orientationSupported ? "hidden" : ""} style={{ position: "fixed", left: 0, top: 0 }} />
       <div ref={mountRef} onPointerDown={handlePointerDown} className='bg-transparent fixed top-0 left-0'
         style={{ position: "fixed", left: 0, top: 0 }} />
     </div>
