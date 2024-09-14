@@ -14,13 +14,13 @@ import {
 } from '@/components/ui/dialog';
 import type { Avatar } from '@/lib/shooting/avatar';
 import { createTextTexture } from '@/lib/shooting/createTextTexture';
-import { DeviceOrientationControls } from '@/lib/shooting/DeviceOrientationControls';
+import { DeviceOrientationControls } from '@/lib/shooting/device-orientation-controls';
 import { cn } from '@/lib/utils';
 import * as TWEEN from '@tweenjs/tween.js';
 import * as Three from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-import { Video } from './Camera';
-import { StockView } from './StockView';
+import { Video } from './camera';
+import { StockView } from './stock-view';
 
 type Avatar3DObject = Avatar & {
   isDestroyed: boolean;

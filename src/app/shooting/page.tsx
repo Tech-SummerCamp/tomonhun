@@ -1,4 +1,4 @@
-import { ShootingView } from '../../components/shooting/ShootingView';
+import { ShootingView } from '../../components/shooting/shooting-view';
 import type { Avatar } from '../../lib/shooting/avatar';
 
 // TODO: データベースから取得
