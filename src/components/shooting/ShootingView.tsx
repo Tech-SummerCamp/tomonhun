@@ -2,12 +2,22 @@
 
 import { useEffect, useRef, useState } from 'react';
 
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog';
+import type { Avatar } from '@/lib/shooting/avatar';
 import { createTextTexture } from '@/lib/shooting/createTextTexture';
+import { DeviceOrientationControls } from '@/lib/shooting/DeviceOrientationControls';
 import * as TWEEN from '@tweenjs/tween.js';
 import * as Three from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-import type { Avatar } from '../../lib/shooting/avatar';
-import { DeviceOrientationControls } from '../../lib/shooting/DeviceOrientationControls';
+import { Button } from '../ui/button';
 import { Video } from './Camera';
 import { StockView } from './StockView';
 
@@ -49,6 +59,7 @@ export function ShootingView({ avatars }: { avatars: Avatar[] }) {
   const tweenGroupRef = useRef<TWEEN.Group>();
   const [orientationSupported, setOrientationSupported] = useState(false);
   const [stock, setStock] = useState<AvatarStock[]>([]);
+  const [dialogOpen, setDialogOpen] = useState(false);
 
   useEffect(() => {
     if (!avatars) return;
@@ -210,15 +221,22 @@ export function ShootingView({ avatars }: { avatars: Avatar[] }) {
       const intersects = raycasterRef.current.intersectObjects(
         sceneRef.current.children,
       );
+      let count = 0;
       for (const obj of intersects) {
         if (obj.object.userData.avatar) {
           const avatar = obj.object.userData.avatar as Avatar3DObject;
           avatar.object.removeFromParent();
           setStock((prev) => [...prev, avatar]);
+          if (stock.length + count === 4) {
+            setDialogOpen(true);
+          }
+          count++;
         }
       }
     }
   };
+
+  const goToNext = () => {};
 
   return (
     <div>
@@ -234,6 +252,22 @@ export function ShootingView({ avatars }: { avatars: Avatar[] }) {
         style={{ position: 'fixed', left: 0, top: 0 }}
       />
       <StockView avatars={stock} />
+
+      <Dialog open={dialogOpen} onOpenChange={() => goToNext()}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>スタックがいっぱいになりました。</DialogTitle>
+            <DialogDescription>選別に進みますか？</DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <DialogClose asChild>
+              <Button type='button' variant='secondary'>
+                はい
+              </Button>
+            </DialogClose>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
