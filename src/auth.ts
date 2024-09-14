@@ -17,19 +17,18 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     strategy: "jwt",
   },
   debug: true,
-  // callbacks: {
-  //   async session({ session, token, user }) {
-  //     if (session.user) {
-  //       session.user.id = user.id;
-  //       session.user.twitterId = user.twitterId;
-  //     }
-  //     return session;
-  //   },
-  //   async jwt({ token, user, account, profile, isNewUser }) {
-  //     if (account?.providerAccountId) {
-  //       token.twitterId = account.providerAccountId;
-  //     }
-  //     return token;
-  //   },
-  // },
+  callbacks: {
+    async session({ session, token, user }) {
+      if (session.user) {
+        session.user.id = token.sub; // セッションにユーザーIDを追加
+      }
+      return session;
+    },
+    async jwt({ token, user, account, profile, isNewUser }) {
+      if (user) {
+        token.sub = user.id; // JWTトークンにユーザーIDを追加
+      }
+      return token;
+    },
+  },
 });
