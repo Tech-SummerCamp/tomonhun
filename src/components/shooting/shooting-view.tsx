@@ -19,8 +19,8 @@ import { cn } from '@/lib/utils';
 import * as TWEEN from '@tweenjs/tween.js';
 import * as Three from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-import { Video } from './camera';
 import { StockView } from './stock-view';
+import { Video } from './video';
 
 type Avatar3DObject = Avatar & {
   isDestroyed: boolean;
