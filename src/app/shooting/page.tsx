@@ -1,4 +1,4 @@
-import { ThreeJSDemo } from "../../../components/shooting/canvas";
+import { ShootingView } from "../../../components/shooting/ShootingView";
 import type { Avatar } from "../../../lib/shooting/avatar";
 
 // TODO: データベースから取得
@@ -37,6 +37,6 @@ const avatarsData: Avatar[] = [
 
 export default function Page() {
   return (
-    <ThreeJSDemo avatars={avatarsData} />
+    <ShootingView avatars={avatarsData} />
   )
 }

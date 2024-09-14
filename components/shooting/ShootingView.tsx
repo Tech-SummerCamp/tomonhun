@@ -1,6 +1,6 @@
 "use client"
 
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 
 import * as Three from 'three';
 import * as TWEEN from '@tweenjs/tween.js';
@@ -16,7 +16,7 @@ type Avatar3DObject = Avatar & {
 
 function floatAnimation(mesh: Three.Mesh, group: TWEEN.Group) {
   const tween = new TWEEN.Tween(mesh.position)
-    .to({ y: mesh.position.y + Math.random() * 200 - 100 }, 2000)
+    .to({ y: mesh.position.y + Math.random() * 500 - 250 }, 2000)
     .easing(TWEEN.Easing.Quadratic.InOut)
     .onUpdate((p) => {
       mesh.position.y = p.y;
@@ -26,7 +26,7 @@ function floatAnimation(mesh: Three.Mesh, group: TWEEN.Group) {
   group.add(tween);
 }
 
-export function ThreeJSDemo({ avatars }: { avatars: Avatar[] }) {
+export function ShootingView({ avatars }: { avatars: Avatar[] }) {
   const mountRef = useRef<HTMLDivElement>(null);
   const rendererRef = useRef<Three.WebGLRenderer>();
   const sceneRef = useRef<Three.Scene>();
