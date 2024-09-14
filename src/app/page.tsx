@@ -26,7 +26,6 @@ export default function Home() {
 
         <SignIn />
 
-        <SignIn />
 
         <div className='flex gap-4 items-center flex-col sm:flex-row'>
           <a
