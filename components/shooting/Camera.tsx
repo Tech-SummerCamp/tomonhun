@@ -44,33 +44,7 @@ export function Video({ className, style }: { className?: string, style?: CSSPro
         });
     };
 
-    const adjustVideo = () => {
-      const windowWidth = window.innerWidth;
-      const windowHeight = window.innerHeight;
-      const videoWidth = video.videoWidth;
-      const videoHeight = video.videoHeight;
-
-      const videoAspect: number = videoWidth / videoHeight;
-      const windowAspect: number = windowWidth / windowHeight;
-
-      if (windowAspect < videoAspect) {
-        const newWidth: number = videoAspect * windowHeight;
-        video.style.width = `${newWidth}px`;
-        video.style.marginLeft = `${-(newWidth - windowWidth) / 2}px`;
-        video.style.height = `${windowHeight}px`;
-        video.style.marginTop = "0px";
-      } else {
-        const newHeight: number = 1 / (videoAspect / windowWidth);
-        video.style.height = `${newHeight}px`;
-        video.style.marginTop = `${-(newHeight - windowHeight) / 2}px`;
-        video.style.width = `${windowWidth}px`;
-        video.style.marginLeft = "0px";
-      }
-    };
-
     const initVideo = () => {
-      video.addEventListener("loadedmetadata", adjustVideo);
-
       navigator.mediaDevices
         .enumerateDevices()
         .then((devices) => {
