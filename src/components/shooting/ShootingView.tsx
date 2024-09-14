@@ -239,7 +239,7 @@ export function ShootingView({ avatars }: { avatars: Avatar[] }) {
   const goToNext = () => {};
 
   return (
-    <div>
+    <>
       <Video
         disable={!orientationSupported}
         className={!orientationSupported ? 'hidden' : ''}
@@ -268,6 +268,6 @@ export function ShootingView({ avatars }: { avatars: Avatar[] }) {
           </DialogFooter>
         </DialogContent>
       </Dialog>
-    </div>
+    </>
   );
 }
