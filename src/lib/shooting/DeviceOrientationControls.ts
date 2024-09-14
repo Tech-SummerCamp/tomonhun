@@ -51,7 +51,9 @@ class DeviceOrientationControls extends EventDispatcher {
     };
 
     const onScreenOrientationChangeEvent = function () {
-      scope.screenOrientation = screen.orientation ? screen.orientation.angle : 0;
+      scope.screenOrientation = screen.orientation
+        ? screen.orientation.angle
+        : 0;
     };
 
     // The angles alpha, beta and gamma form a set of intrinsic Tait-Bryan angles of type Z-X'-Y''
