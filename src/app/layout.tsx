@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+
 import localFont from 'next/font/local';
 import './globals.css';
 
@@ -12,7 +13,7 @@ const geistMono = localFont({
   variable: '--font-geist-mono',
   weight: '100 900',
 });
-const inter = Inter({ subsets: ["latin"] });
+
 
 export const metadata: Metadata = {
   title: 'Create Next App',
