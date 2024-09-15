@@ -305,7 +305,7 @@ export function ShootingView({ avatars }: { avatars: Avatar[] }) {
       <StockView avatars={stock} />
 
       <Dialog open={dialogOpen} onOpenChange={() => goToNext()}>
-        <DialogContent>
+        <DialogContent className='bg-white'>
           <DialogHeader>
             <DialogTitle>スタックがいっぱいになりました。</DialogTitle>
             <DialogDescription>選別に進みますか？</DialogDescription>

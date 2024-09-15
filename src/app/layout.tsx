@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { M_PLUS_Rounded_1c } from 'next/font/google';
 import localFont from 'next/font/local';
 import './globals.css';
 
@@ -11,6 +12,10 @@ const geistMono = localFont({
   src: './fonts/GeistMonoVF.woff',
   variable: '--font-geist-mono',
   weight: '100 900',
+});
+const mplusrounded1c = M_PLUS_Rounded_1c({
+  subsets: ['latin'],
+  weight: ['100', '300', '400', '500', '700', '900'],
 });
 
 export const metadata: Metadata = {
@@ -26,7 +31,7 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${mplusrounded1c.className} antialiased`}
       >
         {children}
       </body>
