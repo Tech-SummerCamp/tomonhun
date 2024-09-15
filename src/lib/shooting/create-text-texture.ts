@@ -18,7 +18,7 @@ export function createTextTexture(options: { fontSize: number; text: string }) {
   const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
 
   // measureTextするためいったん設定
-  const fontFamily = 'M PLUS Rounded 1c';
+  const fontFamily = 'var(--font-mplus-rounded-1c)';
   // const fontFamily = 'sans-serif';
   ctx.font = `bold ${options.fontSize * window.devicePixelRatio}px '${fontFamily}'`;
   const textWidth = ctx.measureText(options.text); // 文字の横幅を取得

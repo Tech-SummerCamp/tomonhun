@@ -16,6 +16,7 @@ const geistMono = localFont({
 const mplusrounded1c = M_PLUS_Rounded_1c({
   subsets: ['latin'],
   weight: ['100', '300', '400', '500', '700', '900'],
+  variable: '--font-mplus-rounded-1c',
 });
 
 export const metadata: Metadata = {
@@ -31,7 +32,7 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${mplusrounded1c.className} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${mplusrounded1c.variable} ${mplusrounded1c.className} antialiased`}
       >
         {children}
       </body>
