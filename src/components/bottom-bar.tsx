@@ -1,4 +1,5 @@
 import { Inbox, UserRound } from 'lucide-react';
+import Link from 'next/link';
 import { Button } from './ui/button';
 
 export function BottomBar() {
@@ -10,10 +11,11 @@ export function BottomBar() {
         </Button>
 
         <Button
+          asChild
           variant='ghost'
           className='flex-1 aspect-square h-fit p-8 text-4xl font-black rounded-full -mt-24 bg-green-300 hover:bg-green-400'
         >
-          討伐
+          <Link href='/shooting'>討伐</Link>
         </Button>
 
         <Button variant='ghost' className='flex-1 py-8'>

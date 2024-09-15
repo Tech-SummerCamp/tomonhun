@@ -1,6 +1,7 @@
 'use client';
 
 import { Avatar } from '@/lib/shooting/avatar';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { SerifScreen } from './serif-screen';
 import { SortingScreen } from './sorting-screen';
@@ -15,6 +16,7 @@ export default function SortingClientPage({
   const [index, setIndex] = useState(0);
   const [remain, setRemain] = useState(initialRemainCount);
   const [serifScreen, setSerifScreen] = useState(true);
+  const router = useRouter();
 
   const transition = (serifScreen: boolean, increment: boolean) => {
     if (increment) {
@@ -30,6 +32,7 @@ export default function SortingClientPage({
   const handleReleaseButtonClick = () => {
     if (index === avatars.length - 1) {
       // TODO: 図鑑に移動
+      router.push('/zukan');
     } else {
       transition(true, true);
     }
@@ -41,6 +44,7 @@ export default function SortingClientPage({
     setRemain((r) => r - 1);
     if (index === avatars.length - 1) {
       // TODO: 図鑑に移動
+      router.push('/zukan');
     } else {
       transition(true, true);
     }

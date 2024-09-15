@@ -2,7 +2,8 @@
 
 import { Avatar } from '@/lib/shooting/avatar';
 import { cn } from '@/lib/utils';
-import { ChevronLeft, UserRound } from 'lucide-react';
+import { ChevronLeft, Home, UserRound } from 'lucide-react';
+import Link from 'next/link';
 import { useState } from 'react';
 import { Button } from '../ui/button';
 import { AvatarDetailsView } from './avatar-details-view';
@@ -15,10 +16,19 @@ export function ZukanClientPage({ avatars }: { avatars: Avatar[] }) {
     <div className='max-lg:relative lg:grid lg:grid-cols-2'>
       <div className='mx-auto h-screen overflow-y-scroll lg:container'>
         <div className='sticky top-0 bg-white'>
+          <Button
+            asChild
+            variant='ghost'
+            className='rounded-full p-2 absolute left-2 top-2'
+          >
+            <Link href='/home'>
+              <Home />
+            </Link>
+          </Button>
           <div className='flex items-stretch justify-center gap-2'>
             <Button
               variant='ghost'
-              className='relative bg-transparent text-lg'
+              className='text-lg relative bg-transparent h-14'
               size='lg'
               onClick={() => setTagList(true)}
             >
@@ -29,7 +39,7 @@ export function ZukanClientPage({ avatars }: { avatars: Avatar[] }) {
             </Button>
             <Button
               variant='ghost'
-              className='relative bg-transparent text-lg'
+              className='text-lg relative bg-transparent h-14'
               size='lg'
               onClick={() => setTagList(false)}
             >

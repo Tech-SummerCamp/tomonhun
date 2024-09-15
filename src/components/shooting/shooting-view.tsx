@@ -17,6 +17,7 @@ import { createTextTexture } from '@/lib/shooting/create-text-texture';
 import { DeviceOrientationControls } from '@/lib/shooting/device-orientation-controls';
 import { cn } from '@/lib/utils';
 import * as TWEEN from '@tweenjs/tween.js';
+import { useRouter } from 'next/navigation';
 import * as Three from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { StockView } from './stock-view';
@@ -95,6 +96,7 @@ export function ShootingView({ avatars }: { avatars: Avatar[] }) {
   const [orientationSupported, setOrientationSupported] = useState(false);
   const [stock, setStock] = useState<AvatarStock[]>([]);
   const [dialogOpen, setDialogOpen] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     if (!avatars) return;
@@ -304,7 +306,10 @@ export function ShootingView({ avatars }: { avatars: Avatar[] }) {
         className='fixed left-0 top-0 bg-transparent'
       />
       <StockView avatars={stock} />
-      <Button className='z-10 fixed bottom w-28 h-28 text-lg text-wrap rounded-full bg-red-400 hover:bg-red-500 left-4 bottom-28 md:bottom-4'>
+      <Button
+        onClick={() => router.push('/sorting')}
+        className='z-10 fixed bottom w-28 h-28 text-lg text-wrap rounded-full bg-red-400 hover:bg-red-500 left-4 bottom-28 md:bottom-4'
+      >
         討伐を終了する
       </Button>
 
@@ -317,7 +322,11 @@ export function ShootingView({ avatars }: { avatars: Avatar[] }) {
           <DialogFooter>
             <DialogClose asChild>
               {/* TODO: /sortingに移動 */}
-              <Button type='button' variant='secondary'>
+              <Button
+                type='button'
+                variant='secondary'
+                onClick={() => router.push('/sorting')}
+              >
                 はい
               </Button>
             </DialogClose>
