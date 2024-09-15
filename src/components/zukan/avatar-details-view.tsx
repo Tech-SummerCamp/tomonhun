@@ -83,9 +83,7 @@ export function AvatarDetailsView({ avatar }: { avatar: Avatar }) {
           <Star className='min-w-8 min-h-8 fill-gray-400 stroke-none' />
           <p>
             断末魔:
-            <span className='font-bold text-xl'>
-              ヲレを捕まえたって美味しくないぞ！
-            </span>
+            <span className='font-bold text-xl'>{avatar.message}</span>
           </p>
         </div>
         <div className='flex gap-4 items-center h-12'>
