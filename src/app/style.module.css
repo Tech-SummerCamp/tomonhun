@@ -1,0 +1,180 @@
+.element {
+  background-color: #66c999;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+
+.element .div {
+  background-color: #66c999;
+  overflow: hidden;
+  width: 360px;
+  height: 800px;
+  position: relative;
+}
+
+.element .overlap {
+  height: 268px;
+  top: 148px;
+  left: 11px;
+  position: absolute;
+  width: 352px;
+}
+
+.element .overlapgroup {
+  height: 180px;
+  top: 88px;
+  left: 0;
+  position: absolute;
+  width: 352px;
+}
+
+.startbutton {
+  background-color: #e0e0e0;
+  color: black;
+  font-size: 30px;
+  -webkit-text-stroke: 1px #f5f5f5;
+  font-family: 'pupupu-free', Helvetica;
+  letter-spacing: 0;
+  line-height: normal;
+  white-space: nowrap;
+  font-weight: 400;
+  padding: 20px 70px;
+  position: absolute;
+  top: 450px;
+  right: 50px;
+  border-radius: 9999px;
+  border: 4px solid white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.startbutton:hover {
+  transform: scale(1.1);
+  background-color: #ffff00;
+}
+
+.startbutton:active {
+  transform: scale(0.9);
+}
+
+.element .ellipse {
+  width: 128px;
+  height: 132px;
+  top: 0;
+  left: 26px;
+  border-radius: 64px/66px;
+  position: absolute;
+  background-color: #d9d9d9;
+  animation: bounce 2.5s infinite ease-in-out;
+}
+
+.element .group {
+  position: relative;
+  width: 352px;
+  height: 96px;
+  top: 84px;
+  left: 0;
+}
+
+.element .textwrapper {
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  -webkit-text-stroke: 4px #f5f5f5;
+  font-family: 'pupupu-free', Helvetica;
+  font-weight: 400;
+  color: #f5b14b;
+  font-size: 80px;
+  letter-spacing: 0;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.element .ellipse2 {
+  width: 99px;
+  height: 95px;
+  top: 0;
+  left: 230px;
+  border-radius: 49.5px/47.5px;
+  position: absolute;
+  background-color: #d9d9d9;
+  animation: bounce 1.3s infinite ease-in-out;
+}
+
+.element .ellipse3 {
+  width: 112px;
+  height: 99px;
+  top: 598px;
+  left: -19px;
+  border-radius: 56px/49.5px;
+  position: absolute;
+  background-color: #d9d9d9;
+  animation: bounce 1.3s infinite ease-in-out;
+}
+
+.element .ellipse4 {
+  width: 112px;
+  height: 99px;
+  top: 39px;
+  left: 37px;
+  border-radius: 56px/49.5px;
+  position: absolute;
+  background-color: #d9d9d9;
+  animation: bounce 2.7s infinite ease-in-out;
+}
+
+.element .ellipse5 {
+  width: 112px;
+  height: 99px;
+  top: 595px;
+  left: 284px;
+  border-radius: 56px/49.5px;
+  position: absolute;
+  background-color: #d9d9d9;
+  animation: bounce 1.8s infinite ease-in-out;
+}
+
+.element .ellipse6 {
+  width: 112px;
+  height: 99px;
+  top: 731px;
+  left: 149px;
+  border-radius: 56px/49.5px;
+  position: absolute;
+  background-color: #d9d9d9;
+  animation: bounce 1.7s infinite ease-in-out;
+}
+
+.element .ellipse7 {
+  width: 128px;
+  height: 119px;
+  top: 448px;
+  left: 101px;
+  border-radius: 64px/59.5px;
+  position: absolute;
+  background-color: #d9d9d9;
+  animation: bounce 1.5s infinite ease-in-out;
+}
+
+.element .ellipse8 {
+  width: 112px;
+  height: 99px;
+  top: 419px;
+  left: 272px;
+  border-radius: 56px/49.5px;
+  position: absolute;
+  background-color: #d9d9d9;
+  animation: bounce 2s infinite ease-in-out;
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
