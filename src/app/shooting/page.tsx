@@ -7,41 +7,43 @@ const avatarsData: Avatar[] = [
     name: 'Yuto Terada',
     imageUrl: '/kutsuhimo_musubu_man.png',
     message: 'ぎゃー',
+    favote: 'ハンバーグ',
   },
   {
     name: 'Yuto Terada',
     imageUrl: '/kutsuhimo_musubu_man.png',
     message: 'ぎゃー',
+    favote: 'ハンバーグ',
   },
   {
     name: 'Yuto Terada',
     imageUrl: '/kutsuhimo_musubu_man.png',
     message: 'ぎゃー',
+    favote: 'ハンバーグ',
   },
   {
     name: 'Yuto Terada',
     imageUrl: '/kutsuhimo_musubu_man.png',
     message: 'ぎゃー',
+    favote: 'ハンバーグ',
   },
   {
     name: 'Yuto Terada',
     imageUrl: '/kutsuhimo_musubu_man.png',
     message: 'ぎゃー',
+    favote: 'ハンバーグ',
   },
   {
     name: 'Yuto Terada',
     imageUrl: '/kutsuhimo_musubu_man.png',
     message: 'ぎゃー',
+    favote: 'ハンバーグ',
   },
   {
     name: 'Yuto Terada',
     imageUrl: '/kutsuhimo_musubu_man.png',
     message: 'ぎゃー',
-  },
-  {
-    name: 'Yuto Terada',
-    imageUrl: '/kutsuhimo_musubu_man.png',
-    message: 'ぎゃー',
+    favote: 'ハンバーグ',
   },
 ];
 
