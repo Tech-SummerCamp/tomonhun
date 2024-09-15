@@ -36,7 +36,6 @@ export const POST = async (request: NextRequest) => {
 
   const body = await request.json();
   if (!body.name) {
-    console.log("no name");
     return NextResponse.json(
       { message: "好物の名前を指定してください" },
       { status: 400 }
