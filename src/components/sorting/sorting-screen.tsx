@@ -64,13 +64,13 @@ export function SortingScreen({
             <div className='max-w-md w-full py-8 flex flex-col gap-2 items-center'>
               <p className='font-bold text-3xl text-white'>{avatar.name}</p>
               <div className='border-b-white pb-2 px-4 border-b-[1px] text-center text-xl md:text-2xl'>
-                体重1kg 身長1m
+                体重{avatar.weight}kg 身長{avatar.height}m
               </div>
               <div className='border-b-white pb-2 px-4 border-b-[1px] text-center text-xl md:text-2xl'>
                 好物: {avatar.favorite}
               </div>
               <div className='border-b-white pb-2 px-4 border-b-[1px] text-center text-xl md:text-2xl'>
-                これまでに討伐した 名前 の数 N 体
+                これまでに討伐した 名前 の数 {avatar.defeats} 体
               </div>
             </div>
           </div>

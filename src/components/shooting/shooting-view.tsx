@@ -315,6 +315,7 @@ export function ShootingView({ avatars }: { avatars: Avatar[] }) {
           </DialogHeader>
           <DialogFooter>
             <DialogClose asChild>
+              {/* TODO: /sortingに移動 */}
               <Button type='button' variant='secondary'>
                 はい
               </Button>
