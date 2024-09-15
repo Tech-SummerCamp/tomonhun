@@ -20,8 +20,10 @@ export function BottomBar() {
           <Link href='/shooting'>討伐</Link>
         </Button>
 
-        <Button variant='ghost' className='flex-1 py-8'>
-          <UserRound className='w-8 h-8' />
+        <Button variant='ghost' className='flex-1 py-8' asChild>
+          <Link href='/settings'>
+            <UserRound className='w-8 h-8' />
+          </Link>
         </Button>
       </div>
     </>
