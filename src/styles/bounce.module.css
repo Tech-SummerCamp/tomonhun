@@ -1,0 +1,65 @@
+.ellipse1 {
+  width: 128px;
+  height: 128px;
+  top: 200px;
+  left: 26px;
+  border-radius: 64px/66px;
+  position: absolute;
+  background-color: #d9d9d9;
+  animation: bounce 2.5s infinite ease-in-out;
+}
+
+.ellipse2 {
+  width: 99px;
+  height: 99px;
+  top: 40px;
+  left: 230px;
+  border-radius: 49.5px/47.5px;
+  position: absolute;
+  background-color: #d9d9d9;
+  animation: bounce 1.3s infinite ease-in-out;
+}
+
+.ellipse3 {
+  width: 112px;
+  height: 112px;
+  top: 398px;
+  left: 220px;
+  border-radius: 56px/49.5px;
+  position: absolute;
+  background-color: #d9d9d9;
+  animation: bounce 1.3s infinite ease-in-out;
+}
+
+.ellipse4 {
+  width: 99px;
+  height: 99px;
+  top: 39px;
+  left: 37px;
+  border-radius: 56px/49.5px;
+  position: absolute;
+  background-color: #d9d9d9;
+  animation: bounce 2.7s infinite ease-in-out;
+}
+
+.ellipse5 {
+  width: 112px;
+  height: 112px;
+  top: 215px;
+  left: 284px;
+  border-radius: 56px/49.5px;
+  position: absolute;
+  background-color: #d9d9d9;
+  animation: bounce 1.8s infinite ease-in-out;
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
+}

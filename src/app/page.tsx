@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import styles from './style.module.css';
 
 export default function Home() {
@@ -19,7 +20,9 @@ export default function Home() {
         <div className={styles.ellipse6}></div>
         <div className={styles.ellipse7}></div>
         <div className={styles.ellipse8}></div>
-        <button className={styles.startbutton}>すたぁと</button>
+        <Link className={styles.startbutton} href='/home'>
+          すたぁと
+        </Link>
       </div>
     </div>
   );
