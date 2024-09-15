@@ -307,7 +307,7 @@ export function ShootingView({ avatars }: { avatars: Avatar[] }) {
       />
       <StockView avatars={stock} />
       <Button
-        onClick={() => router.push('/sorting')}
+        onClick={() => router.replace('/sorting')}
         className='z-10 fixed bottom w-28 h-28 text-lg text-wrap rounded-full bg-red-400 hover:bg-red-500 left-4 bottom-28 md:bottom-4'
       >
         討伐を終了する
@@ -321,11 +321,11 @@ export function ShootingView({ avatars }: { avatars: Avatar[] }) {
           </DialogHeader>
           <DialogFooter>
             <DialogClose asChild>
-              {/* TODO: /sortingに移動 */}
+              {/* TODO: なんとかして状態保存 */}
               <Button
                 type='button'
                 variant='secondary'
-                onClick={() => router.push('/sorting')}
+                onClick={() => router.replace('/sorting')}
               >
                 はい
               </Button>

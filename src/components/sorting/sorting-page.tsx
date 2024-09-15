@@ -31,8 +31,7 @@ export default function SortingClientPage({
 
   const handleReleaseButtonClick = () => {
     if (index === avatars.length - 1) {
-      // TODO: 図鑑に移動
-      router.push('/zukan');
+      router.replace('/zukan');
     } else {
       transition(true, true);
     }
@@ -40,11 +39,10 @@ export default function SortingClientPage({
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handleAddButtonClick = (avatar: Avatar, tag?: string) => {
-    // TODO: キャラクターを追加
+    // TODO: DBに追加
     setRemain((r) => r - 1);
     if (index === avatars.length - 1) {
-      // TODO: 図鑑に移動
-      router.push('/zukan');
+      router.replace('/zukan');
     } else {
       transition(true, true);
     }
