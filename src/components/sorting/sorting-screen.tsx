@@ -70,7 +70,7 @@ export function SortingScreen({
                 好物: {avatar.favorite}
               </div>
               <div className='border-b-white pb-2 px-4 border-b-[1px] text-center text-xl md:text-2xl'>
-                これまでに討伐した 名前 の数 {avatar.defeats} 体
+                これまでに討伐した {avatar.name} の数 {avatar.defeats} 体
               </div>
             </div>
           </div>
