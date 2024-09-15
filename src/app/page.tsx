@@ -1,6 +1,6 @@
 'use client';
 
-import { createClient } from '@/utils/supabase/server-props';
+import { createClient } from '@/utils/supabase/client';
 
 export default function SignIn() {
   const supabase = createClient();
