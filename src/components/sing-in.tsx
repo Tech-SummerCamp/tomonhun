@@ -1,13 +1,14 @@
 'use client';
 
-import { createClient } from '@/utils/supabase/server-props';
+import { supabase } from '@/utils/supabase/client';
 
 export default function SignIn() {
-  const supabase = createClient();
-
   const signInWithTwitter = async () => {
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: 'twitter',
+      options: {
+        redirectTo: `${window.location.origin}/auth/callback`,
+      },
     });
     if (error) {
       console.error('Error signing in with Twitter:', error);
