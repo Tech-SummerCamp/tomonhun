@@ -37,7 +37,7 @@ export function SortingScreen({
       <div className='w-screen h-svh bg-[#6C95C6]'>
         <div className='flex flex-col h-full'>
           {/* self-screenのキャラクター表示のレスポンシブ版 */}
-          <div className='flex-1 h-1/4 flex justify-center'>
+          <div className='flex-1 h-[20%] flex justify-center'>
             <div className='flex flex-col items-center max-w-md'>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
@@ -76,6 +76,9 @@ export function SortingScreen({
           </div>
           <div className='flex-2 flex justify-center'>
             <div className='bg-slate-200 rounded-3xl ml-4 mr-4 max-w-md w-full p-8 mb-8 flex flex-col items-stretch gap-2'>
+              <p className='text-center text-bold text-2xl'>
+                {avatar.name}を仲間に加えますか？
+              </p>
               <Button
                 variant='ghost'
                 className='text-xl'
