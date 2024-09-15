@@ -2,7 +2,7 @@
 
 import { Avatar } from '@/lib/shooting/avatar';
 import { cn } from '@/lib/utils';
-import { ChevronLeft } from 'lucide-react';
+import { ChevronLeft, UserRound } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from '../ui/button';
 import { AvatarDetailsView } from './avatar-details-view';
@@ -45,8 +45,8 @@ export function ZukanClientPage({ avatars }: { avatars: Avatar[] }) {
             <li
               key={index}
               className={cn(
-                'max-w-32 hover:bg-gray-100 rounded',
-                avatar === selected ? 'bg-gray-200' : 'bg-transparent',
+                'max-w-32 hover:bg-gray-200 rounded-[12px]',
+                avatar === selected ? 'bg-gray-100' : 'bg-transparent',
               )}
               onClick={() => setSelected(avatar)}
             >
@@ -69,6 +69,13 @@ export function ZukanClientPage({ avatars }: { avatars: Avatar[] }) {
               className='rounded-full p-2 absolute top-2 left-2'
             >
               <ChevronLeft />
+            </Button>
+            <Button
+              onClick={() => setSelected(null)}
+              variant='outline'
+              className='rounded-full p-2 absolute top-2 right-2'
+            >
+              <UserRound />
             </Button>
             <AvatarDetailsView avatar={selected} />
           </>

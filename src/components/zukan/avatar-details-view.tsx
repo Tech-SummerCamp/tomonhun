@@ -35,8 +35,14 @@ export function AvatarDetailsView({ avatar }: { avatar: Avatar }) {
       </div>
 
       <div className='border-b-gray-300 pb-2 px-4 border-b-[1px] text-center text-lg md:text-xl'>
-        体重:<span className='font-semibold text-xl md:text-2xl mr-4'>1kg</span>
-        身長:<span className='font-semibold text-xl md:text-2xl mr-4'>1m</span>
+        体重:
+        <span className='font-semibold text-xl md:text-2xl mr-4'>
+          {avatar.weight}kg
+        </span>
+        身長:
+        <span className='font-semibold text-xl md:text-2xl mr-4'>
+          {avatar.height}m
+        </span>
         <br />
         好物:
         <span className='font-semibold text-xl md:text-2xl mr-4'>
@@ -46,8 +52,8 @@ export function AvatarDetailsView({ avatar }: { avatar: Avatar }) {
 
       <div className='flex flex-col gap-4'>
         <div className='flex gap-2 justify-center items-center text-lg md:text-xl'>
-          Lv.1 <MoveRight />{' '}
-          <span className='text-orange-300 font-bold'>5</span>
+          Lv.{avatar.level} <MoveRight />{' '}
+          <span className='text-orange-300 font-bold'>{avatar.level + 1}</span>
         </div>
         <div className='flex gap-4 justify-center items-center'>
           <Button variant='outline' className='p-2 rounded-full'>
@@ -76,7 +82,10 @@ export function AvatarDetailsView({ avatar }: { avatar: Avatar }) {
         <div className='flex gap-4 items-center h-12'>
           <Star className='min-w-8 min-h-8 fill-gray-400 stroke-none' />
           <p>
-            好物総取得数<span className='font-bold text-xl'>36個</span>
+            好物総取得数:{' '}
+            <span className='font-bold text-xl'>
+              {avatar.numberOfFavorites}個
+            </span>
           </p>
         </div>
         <div className='flex gap-4 items-center h-12'>
@@ -89,13 +98,17 @@ export function AvatarDetailsView({ avatar }: { avatar: Avatar }) {
         <div className='flex gap-4 items-center h-12'>
           <Star className='min-w-8 min-h-8 fill-gray-400 stroke-none' />
           <p>
-            合計討伐数<span className='font-bold text-xl'>25体</span>
+            合計討伐数:{' '}
+            <span className='font-bold text-xl'>{avatar.defeats}体</span>
           </p>
         </div>
         <div className='flex gap-4 items-center h-12'>
           <Star className='min-w-8 min-h-8 fill-gray-400 stroke-none' />
           <p>
-            出会った日時<span className='font-bold text-xl'>2024/09/15</span>
+            出会った日時:{' '}
+            <span className='font-bold text-xl'>
+              {avatar.firstMet.toLocaleDateString()}
+            </span>
           </p>
         </div>
       </div>
