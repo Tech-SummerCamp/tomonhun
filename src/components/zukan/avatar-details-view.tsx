@@ -11,7 +11,7 @@ import { Button } from '../ui/button';
 
 export function AvatarDetailsView({ avatar }: { avatar: Avatar }) {
   return (
-    <div className='flex flex-col max-w-sm mx-auto gap-4'>
+    <div className='flex flex-col max-w-sm mx-auto gap-4 mt-16 mb-4'>
       <div className='flex items-center justify-center relative'>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
