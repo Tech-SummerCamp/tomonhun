@@ -125,7 +125,7 @@ export function ShootingView({ avatars }: { avatars: Avatar[] }) {
     pointerRef.current = new Three.Vector2();
 
     const camera = new Three.PerspectiveCamera(45, w / h, 1, 10000);
-    camera.position.set(0, 0, 5000);
+    camera.position.set(0, 0, 1);
     cameraRef.current = camera;
     if (/Mobi|Android/i.test(navigator.userAgent)) {
       console.log('DeviceOrientation is supported');
@@ -303,6 +303,9 @@ export function ShootingView({ avatars }: { avatars: Avatar[] }) {
         className='fixed left-0 top-0 bg-transparent'
       />
       <StockView avatars={stock} />
+      <Button className='z-10 fixed bottom w-28 h-28 text-lg text-wrap rounded-full bg-red-400 hover:bg-red-500 left-4 bottom-28 md:bottom-4'>
+        討伐を終了する
+      </Button>
 
       <Dialog open={dialogOpen} onOpenChange={() => goToNext()}>
         <DialogContent className='bg-white'>
