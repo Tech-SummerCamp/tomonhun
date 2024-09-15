@@ -14,7 +14,11 @@ export function AvatarDetailsView({ avatar }: { avatar: Avatar }) {
     <div className='flex flex-col max-w-sm mx-auto gap-4'>
       <div className='flex items-center justify-center relative'>
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img className='h-60' src={avatar.imageUrl} alt={avatar.name} />
+        <img
+          className='h-60 pointer-events-none select-none'
+          src={avatar.imageUrl}
+          alt={avatar.name}
+        />
         <Button
           variant='ghost'
           className='absolute left-2 bottom-2 p-2 rounded-full'

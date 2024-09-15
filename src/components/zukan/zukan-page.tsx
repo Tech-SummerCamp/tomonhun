@@ -18,7 +18,7 @@ export function ZukanClientPage({ avatars }: { avatars: Avatar[] }) {
           <div className='flex items-stretch justify-center gap-2'>
             <Button
               variant='ghost'
-              className='text-lg relative'
+              className='text-lg relative bg-transparent'
               size='lg'
               onClick={() => setTagList(true)}
             >
@@ -29,7 +29,7 @@ export function ZukanClientPage({ avatars }: { avatars: Avatar[] }) {
             </Button>
             <Button
               variant='ghost'
-              className='text-lg relative'
+              className='text-lg relative bg-transparent'
               size='lg'
               onClick={() => setTagList(false)}
             >
@@ -51,7 +51,11 @@ export function ZukanClientPage({ avatars }: { avatars: Avatar[] }) {
               onClick={() => setSelected(avatar)}
             >
               <h2 className='text-center mb-2'>Lv. 1</h2>
-              <img src={avatar.imageUrl} alt={avatar.name} />
+              <img
+                src={avatar.imageUrl}
+                alt={avatar.name}
+                className='pointer-events-none select-none'
+              />
               <h2 className='text-center bg-gray-200 rounded-full mt-2'>
                 {avatar.name}
               </h2>
@@ -66,14 +70,14 @@ export function ZukanClientPage({ avatars }: { avatars: Avatar[] }) {
             <Button
               onClick={() => setSelected(null)}
               variant='outline'
-              className='rounded-full p-2 absolute top-2 left-2'
+              className='rounded-full p-2 absolute top-2 left-2 z-10'
             >
               <ChevronLeft />
             </Button>
             <Button
               onClick={() => setSelected(null)}
               variant='outline'
-              className='rounded-full p-2 absolute top-2 right-2'
+              className='rounded-full p-2 absolute top-2 right-2 z-10'
             >
               <UserRound />
             </Button>
