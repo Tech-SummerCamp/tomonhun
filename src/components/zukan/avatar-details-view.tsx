@@ -40,7 +40,7 @@ export function AvatarDetailsView({ avatar }: { avatar: Avatar }) {
         <br />
         好物:
         <span className='font-semibold text-xl md:text-2xl mr-4'>
-          {avatar.favote}
+          {avatar.favorite}
         </span>
       </div>
 
@@ -53,7 +53,7 @@ export function AvatarDetailsView({ avatar }: { avatar: Avatar }) {
           <Button variant='outline' className='p-2 rounded-full'>
             <Minus />
           </Button>
-          <span className='font-semibold text-xl'>{avatar.favote}</span>
+          <span className='font-semibold text-xl'>{avatar.favorite}</span>
           <Button variant='outline' className='p-2 rounded-full'>
             <Plus />
           </Button>

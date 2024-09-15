@@ -67,7 +67,7 @@ export function SortingScreen({
                 体重1kg 身長1m
               </div>
               <div className='border-b-white pb-2 px-4 border-b-[1px] text-center text-xl md:text-2xl'>
-                好物: {avatar.favote}
+                好物: {avatar.favorite}
               </div>
               <div className='border-b-white pb-2 px-4 border-b-[1px] text-center text-xl md:text-2xl'>
                 これまでに討伐した 名前 の数 N 体
