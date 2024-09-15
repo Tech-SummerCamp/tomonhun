@@ -25,27 +25,60 @@ import { Video } from './video';
 type Avatar3DObject = Avatar & {
   isDestroyed: boolean;
   object: Three.Object3D;
+  floatTween: TWEEN.Tween;
+  failing: boolean;
+  failTween: TWEEN.Tween;
+  texture: Three.Texture;
 };
 
 type AvatarStock = Avatar;
 
 function floatAnimation(
-  obj: Three.Object3D,
+  obj: Avatar3DObject,
   group: TWEEN.Group,
   sign?: number,
 ) {
-  const tween = new TWEEN.Tween(obj.position)
+  const tween = new TWEEN.Tween(obj.object.position)
     .to(
-      { y: obj.position.y + Math.random() * 200 * (sign || 1) },
+      { y: obj.object.position.y + Math.random() * 200 * (sign || 1) },
       Math.random() * 3000 + 2000,
     )
     .easing(TWEEN.Easing.Quadratic.InOut)
     .onUpdate((p) => {
-      obj.position.y = p.y;
+      obj.object.position.y = p.y;
     })
     .onComplete(() => floatAnimation(obj, group, -(sign || 1)))
     .start();
   group.add(tween);
+}
+
+function failAnimation(obj: Avatar3DObject, group: TWEEN.Group) {
+  const tween = new TWEEN.Tween(obj.object.position)
+    .to({ y: obj.object.position.y - 1000 }, 1000)
+    .easing(TWEEN.Easing.Back.In)
+    .onUpdate((p) => {
+      obj.object.position.y = p.y;
+    })
+    .onComplete(() => obj.object.removeFromParent())
+    .start();
+  group.add(tween);
+}
+
+function showMessage(avatar: Avatar3DObject) {
+  const {
+    texture: spriteTexture,
+    width: texWidth,
+    height: texHeight,
+  } = createTextTexture({ fontSize: 64, text: avatar.message });
+  const spriteMaterial = new Three.SpriteMaterial({
+    map: spriteTexture,
+    transparent: true,
+  });
+  const sprite = new Three.Sprite(spriteMaterial);
+  const ratio = texWidth / texHeight;
+  sprite.scale.set(100 * ratio, 100, 1);
+  sprite.position.y += avatar.texture.image.height / 2 + 200;
+  avatar.object.add(sprite);
 }
 
 export function ShootingView({ avatars }: { avatars: Avatar[] }) {
@@ -58,6 +91,7 @@ export function ShootingView({ avatars }: { avatars: Avatar[] }) {
   const objects = useRef<Avatar3DObject[]>();
   const controlsRef = useRef<DeviceOrientationControls | OrbitControls>();
   const tweenGroupRef = useRef<TWEEN.Group>();
+  const failTweenGroupRef = useRef<TWEEN.Group>();
   const [orientationSupported, setOrientationSupported] = useState(false);
   const [stock, setStock] = useState<AvatarStock[]>([]);
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -72,6 +106,7 @@ export function ShootingView({ avatars }: { avatars: Avatar[] }) {
     const h = window.innerHeight;
 
     tweenGroupRef.current = new TWEEN.Group();
+    failTweenGroupRef.current = new TWEEN.Group();
 
     rendererRef.current = new Three.WebGLRenderer({
       alpha: true,
@@ -149,6 +184,7 @@ export function ShootingView({ avatars }: { avatars: Avatar[] }) {
         group.userData.avatar = avatar;
         mesh.userData.avatar = avatar;
         avatar.object = group;
+        avatar.texture = texture;
 
         // 方向、位置を指定
         group.position.set(
@@ -164,10 +200,10 @@ export function ShootingView({ avatars }: { avatars: Avatar[] }) {
           initialDirection,
           direction,
         );
-        group.quaternion.copy(quaternion);
-        group.up.set(0, 1, 0);
+        mesh.quaternion.copy(quaternion);
+        mesh.up.set(0, 1, 0);
         sceneRef.current.add(group);
-        floatAnimation(avatar.object, tweenGroupRef.current);
+        floatAnimation(avatar, tweenGroupRef.current);
       });
     }
 
@@ -187,6 +223,10 @@ export function ShootingView({ avatars }: { avatars: Avatar[] }) {
       if (tweenGroupRef.current) {
         // ふわふわの処理
         tweenGroupRef.current.update();
+      }
+      if (failTweenGroupRef.current) {
+        // 落下の処理
+        failTweenGroupRef.current.update();
       }
       if (controlsRef.current) {
         controlsRef.current.update();
@@ -209,7 +249,13 @@ export function ShootingView({ avatars }: { avatars: Avatar[] }) {
   }, [avatars]);
 
   const handlePointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
-    if (cameraRef.current && raycasterRef.current && sceneRef.current) {
+    if (
+      cameraRef.current &&
+      raycasterRef.current &&
+      sceneRef.current &&
+      failTweenGroupRef.current &&
+      tweenGroupRef.current
+    ) {
       const x = (event.clientX / window.innerWidth) * 2 - 1;
       const y = -(event.clientY / window.innerHeight) * 2 + 1;
 
@@ -226,7 +272,10 @@ export function ShootingView({ avatars }: { avatars: Avatar[] }) {
       for (const obj of intersects) {
         if (obj.object.userData.avatar) {
           const avatar = obj.object.userData.avatar as Avatar3DObject;
-          avatar.object.removeFromParent();
+          if (avatar.failing) continue;
+          avatar.failing = true;
+          showMessage(avatar);
+          failAnimation(avatar, failTweenGroupRef.current);
           setStock((prev) => [...prev, avatar]);
           if (stock.length + count === 4) {
             setDialogOpen(true);
