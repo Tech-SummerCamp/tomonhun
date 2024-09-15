@@ -12,13 +12,9 @@ export function StockView({ avatars }: { avatars: Avatar[] }) {
       {avatars.map((item, index) => (
         <div
           key={index}
-          className='aspect-square max-h-20 w-20 border-4 border-[#F5F5F5] bg-[#D9D9D9]'
+          className='flex-[1/5] bg-[#D9D9D9] border-[#F5F5F5] border-4 w-20 max-h-20 aspect-square'
         >
-          <img
-            src={item.imageUrl}
-            alt='avatar'
-            className='m-auto aspect-auto max-h-[72px] max-w-[72px]'
-          />
+          <img src={item.imageUrl} alt='avatar' className='aspect-auto' />
           {/* <p>message</p> */}
         </div>
       ))}
