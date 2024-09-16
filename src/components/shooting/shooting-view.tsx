@@ -310,7 +310,7 @@ export function ShootingView({ avatars }: { avatars: Avatar[] }) {
             weight: i.weight,
           }) as Avatar,
       );
-    localStorage.setItem('failed', JSON.stringify(failed));
+    localStorage.setItem('avatars_tmp', JSON.stringify(failed));
     router.replace('/sorting');
   };
 

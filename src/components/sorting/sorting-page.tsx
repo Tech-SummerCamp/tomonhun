@@ -18,7 +18,7 @@ export default function SortingClientPage({
   const router = useRouter();
 
   useEffect(() => {
-    const str = localStorage.getItem('avatars');
+    const str = localStorage.getItem('avatars_tmp');
     if (str) {
       const obj = JSON.parse(str) as Avatar[];
       if (obj) {
