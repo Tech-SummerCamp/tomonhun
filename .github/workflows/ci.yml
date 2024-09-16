@@ -35,6 +35,8 @@ jobs:
 
       - name: Build
         run: pnpm build
+        env:
+          POSTGRES_URL: ${{ secrets.POSTGRES_URL }}
 
   format-check:
     runs-on: ubuntu-latest
