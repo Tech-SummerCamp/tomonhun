@@ -19,7 +19,7 @@ export function ZukanClientPage({ avatars }: { avatars: Avatar[] }) {
           <Button
             asChild
             variant='ghost'
-            className='rounded-full p-2 absolute left-2 top-2'
+            className='absolute left-2 top-2 rounded-full p-2'
           >
             <Link href='/home'>
               <Home />
@@ -28,7 +28,7 @@ export function ZukanClientPage({ avatars }: { avatars: Avatar[] }) {
           <div className='flex items-stretch justify-center gap-2'>
             <Button
               variant='ghost'
-              className='text-lg relative bg-transparent h-14'
+              className='relative h-14 bg-transparent text-lg'
               size='lg'
               onClick={() => setTagList(true)}
             >
@@ -39,7 +39,7 @@ export function ZukanClientPage({ avatars }: { avatars: Avatar[] }) {
             </Button>
             <Button
               variant='ghost'
-              className='text-lg relative bg-transparent h-14'
+              className='relative h-14 bg-transparent text-lg'
               size='lg'
               onClick={() => setTagList(false)}
             >

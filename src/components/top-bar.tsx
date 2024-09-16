@@ -4,23 +4,23 @@ import { Button } from './ui/button';
 
 export function TopBar() {
   return (
-    <div className='max-sm:hidden fixed top-0 flex items-start'>
+    <div className='fixed top-0 flex items-start max-sm:hidden'>
       <Button
         asChild
         variant='ghost'
-        className='flex-1 aspect-square h-fit p-8 text-4xl font-black rounded-full m-4 bg-green-300 hover:bg-green-400'
+        className='m-4 aspect-square h-fit flex-1 rounded-full bg-green-300 p-8 text-4xl font-black hover:bg-green-400'
       >
         <Link href='/shooting'>討伐</Link>
       </Button>
 
-      <Button variant='ghost' className='flex-1 py-8 mt-8' asChild>
+      <Button variant='ghost' className='mt-8 flex-1 py-8' asChild>
         <Link href='/zukan'>
-          <Inbox className='w-8 h-8' />
+          <Inbox className='h-8 w-8' />
         </Link>
       </Button>
-      <Button variant='ghost' className='flex-1 py-8 mt-8' asChild>
+      <Button variant='ghost' className='mt-8 flex-1 py-8' asChild>
         <Link href='/settings'>
-          <UserRound className='w-8 h-8' />
+          <UserRound className='h-8 w-8' />
         </Link>
       </Button>
     </div>

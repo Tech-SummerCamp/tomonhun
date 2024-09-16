@@ -308,7 +308,7 @@ export function ShootingView({ avatars }: { avatars: Avatar[] }) {
       <StockView avatars={stock} />
       <Button
         onClick={() => router.replace('/sorting')}
-        className='z-10 fixed bottom w-28 h-28 text-lg text-wrap rounded-full bg-red-400 hover:bg-red-500 left-4 bottom-28 md:bottom-4'
+        className='bottom fixed bottom-28 left-4 z-10 h-28 w-28 text-wrap rounded-full bg-red-400 text-lg hover:bg-red-500 md:bottom-4'
       >
         討伐を終了する
       </Button>
