@@ -293,7 +293,23 @@ export function ShootingView({ avatars }: { avatars: Avatar[] }) {
 
   const handleClick = () => {
     if (!objects.current) return;
-    const failed = objects.current.filter((o) => o.failing);
+    const failed = objects.current
+      .filter((o) => o.failing)
+      .map(
+        (i) =>
+          ({
+            name: i.name,
+            imageUrl: i.imageUrl,
+            message: i.message,
+            favorite: i.favorite,
+            firstMet: i.firstMet,
+            level: i.level,
+            defeats: i.defeats,
+            numberOfFavorites: i.numberOfFavorites,
+            height: i.height,
+            weight: i.weight,
+          }) as Avatar,
+      );
     localStorage.setItem('failed', JSON.stringify(failed));
     router.replace('/sorting');
   };
