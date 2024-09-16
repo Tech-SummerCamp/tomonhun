@@ -45,6 +45,8 @@ export default function SortingClientPage({
     const i = index;
     setAvatars((avatars) => avatars.slice(i, 1));
     if (index === avatars.length - 1) {
+      // TODO: DBに追加
+      // sql``
       router.replace('/zukan');
     } else {
       transition(true, false);
@@ -53,9 +55,9 @@ export default function SortingClientPage({
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handleAddButtonClick = (avatar: Avatar, tag?: string) => {
-    // TODO: DBに追加
     setRemain((r) => r - 1);
     if (index === avatars.length - 1) {
+      // TODO: DBに追加
       router.replace('/zukan');
     } else {
       transition(true, true);
