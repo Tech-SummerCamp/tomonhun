@@ -17,6 +17,7 @@ import { createTextTexture } from '@/lib/shooting/create-text-texture';
 import { DeviceOrientationControls } from '@/lib/shooting/device-orientation-controls';
 import { cn } from '@/lib/utils';
 import * as TWEEN from '@tweenjs/tween.js';
+import { useRouter } from 'next/navigation';
 import * as Three from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { StockView } from './stock-view';
@@ -95,6 +96,7 @@ export function ShootingView({ avatars }: { avatars: Avatar[] }) {
   const [orientationSupported, setOrientationSupported] = useState(false);
   const [stock, setStock] = useState<AvatarStock[]>([]);
   const [dialogOpen, setDialogOpen] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     if (!avatars) return;
@@ -125,6 +127,7 @@ export function ShootingView({ avatars }: { avatars: Avatar[] }) {
     pointerRef.current = new Three.Vector2();
 
     const camera = new Three.PerspectiveCamera(45, w / h, 1, 10000);
+    camera.position.set(0, 0, 1);
     camera.position.set(0, 0, 1);
     cameraRef.current = camera;
     if (/Mobi|Android/i.test(navigator.userAgent)) {
@@ -303,7 +306,10 @@ export function ShootingView({ avatars }: { avatars: Avatar[] }) {
         className='fixed left-0 top-0 bg-transparent'
       />
       <StockView avatars={stock} />
-      <Button className='bottom fixed bottom-28 left-4 z-10 h-28 w-28 text-wrap rounded-full bg-red-400 text-lg hover:bg-red-500 md:bottom-4'>
+      <Button
+        onClick={() => router.replace('/sorting')}
+        className='bottom fixed bottom-28 left-4 z-10 h-28 w-28 text-wrap rounded-full bg-red-400 text-lg hover:bg-red-500 md:bottom-4'
+      >
         討伐を終了する
       </Button>
 
@@ -315,8 +321,12 @@ export function ShootingView({ avatars }: { avatars: Avatar[] }) {
           </DialogHeader>
           <DialogFooter>
             <DialogClose asChild>
-              {/* TODO: /sortingに移動 */}
-              <Button type='button' variant='secondary'>
+              {/* TODO: なんとかして状態保存 */}
+              <Button
+                type='button'
+                variant='secondary'
+                onClick={() => router.replace('/sorting')}
+              >
                 はい
               </Button>
             </DialogClose>
