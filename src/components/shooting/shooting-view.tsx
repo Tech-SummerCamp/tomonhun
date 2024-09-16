@@ -291,6 +291,29 @@ export function ShootingView({ avatars }: { avatars: Avatar[] }) {
 
   const goToNext = () => {};
 
+  const handleClick = () => {
+    if (!objects.current) return;
+    const failed = objects.current
+      .filter((o) => o.failing)
+      .map(
+        (i) =>
+          ({
+            name: i.name,
+            imageUrl: i.imageUrl,
+            message: i.message,
+            favorite: i.favorite,
+            firstMet: i.firstMet,
+            level: i.level,
+            defeats: i.defeats,
+            numberOfFavorites: i.numberOfFavorites,
+            height: i.height,
+            weight: i.weight,
+          }) as Avatar,
+      );
+    localStorage.setItem('avatars_tmp', JSON.stringify(failed));
+    router.replace('/sorting');
+  };
+
   return (
     <>
       <Video
@@ -307,7 +330,7 @@ export function ShootingView({ avatars }: { avatars: Avatar[] }) {
       />
       <StockView avatars={stock} />
       <Button
-        onClick={() => router.replace('/sorting')}
+        onClick={handleClick}
         className='bottom fixed bottom-28 left-4 z-10 h-28 w-28 text-wrap rounded-full bg-red-400 text-lg hover:bg-red-500 md:bottom-4'
       >
         討伐を終了する
@@ -322,11 +345,7 @@ export function ShootingView({ avatars }: { avatars: Avatar[] }) {
           <DialogFooter>
             <DialogClose asChild>
               {/* TODO: なんとかして状態保存 */}
-              <Button
-                type='button'
-                variant='secondary'
-                onClick={() => router.replace('/sorting')}
-              >
+              <Button type='button' variant='secondary' onClick={handleClick}>
                 はい
               </Button>
             </DialogClose>

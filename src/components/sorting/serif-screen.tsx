@@ -11,6 +11,8 @@ export function SerifScreen({
   avatar: Avatar;
   onClick: (avatar: Avatar) => void;
 }) {
+  if (!avatar) return <></>;
+
   return (
     <div className='relative h-svh w-screen bg-[#6C95C6]'>
       <div className='absolute left-1/2 top-[calc(10rem+33.33%)] -translate-x-1/2 -translate-y-1/2 blur-sm'>
