@@ -244,14 +244,14 @@ export function ShootingView({ avatars }: { avatars: Avatar[] }) {
       <Video
         disable={!orientationSupported}
         className={cn(
-          'fixed top-0 left-0',
+          'fixed left-0 top-0',
           !orientationSupported ? 'hidden' : '',
         )}
       />
       <div
         ref={mountRef}
         onPointerDown={handlePointerDown}
-        className='bg-transparent fixed top-0 left-0'
+        className='fixed left-0 top-0 bg-transparent'
       />
       <StockView avatars={stock} />
 

@@ -3,9 +3,9 @@ const prettierConfig = {
   singleQuote: true,
   jsxSingleQuote: true,
   plugins: [
-    'prettier-plugin-tailwindcss',
     'prettier-plugin-embed',
     'prettier-plugin-sql',
+    'prettier-plugin-tailwindcss',
   ],
 };
 
