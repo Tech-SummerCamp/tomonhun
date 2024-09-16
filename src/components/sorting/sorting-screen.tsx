@@ -34,22 +34,22 @@ export function SortingScreen({
 
   return (
     <>
-      <div className='w-screen h-svh bg-[#6C95C6]'>
-        <div className='flex flex-col h-full'>
+      <div className='h-svh w-screen bg-[#6C95C6]'>
+        <div className='flex h-full flex-col'>
           {/* self-screenのキャラクター表示のレスポンシブ版 */}
-          <div className='flex-1 h-[20%] flex justify-center'>
-            <div className='flex flex-col items-center max-w-md'>
+          <div className='flex h-[20%] flex-1 justify-center'>
+            <div className='flex max-w-md flex-col items-center'>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 style={{ viewTransitionName: 'avatarImage', contain: 'paint' }}
                 src={avatar.imageUrl}
                 alt={avatar.name}
-                className='h-full aspect-auto z-10'
+                className='z-10 aspect-auto h-full'
               />
-              <div className='blur-sm -translate-y-1/2 w-full'>
+              <div className='w-full -translate-y-1/2 blur-sm'>
                 {/* height: 256*0.3 */}
                 <div
-                  className='bg-white rounded-full aspect-square w-full scale-y-[30%]'
+                  className='aspect-square w-full scale-y-[30%] rounded-full bg-white'
                   style={{
                     viewTransitionName: 'avatarShadow',
                     contain: 'paint',
@@ -60,23 +60,23 @@ export function SortingScreen({
           </div>
 
           {/* 白い部分の分下にずらす */}
-          <div className='flex-1 pt-[calc(16rem*0.3*0.5)] flex justify-center'>
-            <div className='max-w-md w-full py-8 flex flex-col gap-2 items-center'>
-              <p className='font-bold text-3xl text-white'>{avatar.name}</p>
-              <div className='border-b-white pb-2 px-4 border-b-[1px] text-center text-xl md:text-2xl'>
+          <div className='flex flex-1 justify-center pt-[calc(16rem*0.3*0.5)]'>
+            <div className='flex w-full max-w-md flex-col items-center gap-2 py-8'>
+              <p className='text-3xl font-bold text-white'>{avatar.name}</p>
+              <div className='border-b-[1px] border-b-white px-4 pb-2 text-center text-xl md:text-2xl'>
                 体重{avatar.weight}kg 身長{avatar.height}m
               </div>
-              <div className='border-b-white pb-2 px-4 border-b-[1px] text-center text-xl md:text-2xl'>
+              <div className='border-b-[1px] border-b-white px-4 pb-2 text-center text-xl md:text-2xl'>
                 好物: {avatar.favorite}
               </div>
-              <div className='border-b-white pb-2 px-4 border-b-[1px] text-center text-xl md:text-2xl'>
+              <div className='border-b-[1px] border-b-white px-4 pb-2 text-center text-xl md:text-2xl'>
                 これまでに討伐した {avatar.name} の数 {avatar.defeats} 体
               </div>
             </div>
           </div>
           <div className='flex-2 flex justify-center'>
-            <div className='bg-slate-200 rounded-3xl ml-4 mr-4 max-w-md w-full p-8 mb-8 flex flex-col items-stretch gap-2'>
-              <p className='text-center text-bold text-2xl'>
+            <div className='mb-8 ml-4 mr-4 flex w-full max-w-md flex-col items-stretch gap-2 rounded-3xl bg-slate-200 p-8'>
+              <p className='text-bold text-center text-2xl'>
                 {avatar.name}を仲間に加えますか？
               </p>
               <Button
@@ -100,7 +100,7 @@ export function SortingScreen({
               >
                 野に返す
               </Button>
-              <p className='text-end -mb-4'>あと{remain}人捕獲できます</p>
+              <p className='-mb-4 text-end'>あと{remain}人捕獲できます</p>
             </div>
           </div>
         </div>

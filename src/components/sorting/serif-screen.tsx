@@ -12,10 +12,10 @@ export function SerifScreen({
   onClick: (avatar: Avatar) => void;
 }) {
   return (
-    <div className='w-screen h-svh bg-[#6C95C6] relative'>
-      <div className='blur-sm absolute left-1/2 -translate-x-1/2 top-[calc(10rem+33.33%)] -translate-y-1/2'>
+    <div className='relative h-svh w-screen bg-[#6C95C6]'>
+      <div className='absolute left-1/2 top-[calc(10rem+33.33%)] -translate-x-1/2 -translate-y-1/2 blur-sm'>
         <div
-          className='bg-white rounded-full h-64 w-64 scale-y-[30%]'
+          className='h-64 w-64 scale-y-[30%] rounded-full bg-white'
           style={{ viewTransitionName: 'avatarShadow', contain: 'paint' }}
         />
       </div>
@@ -24,14 +24,14 @@ export function SerifScreen({
         src={avatar.imageUrl}
         alt={avatar.name}
         style={{ viewTransitionName: 'avatarImage', contain: 'paint' }}
-        className='h-1/3 aspect-auto absolute top-40 left-1/2 -translate-x-1/2'
+        className='absolute left-1/2 top-40 aspect-auto h-1/3 -translate-x-1/2'
       />
-      <div className='bg-slate-200 rounded-3xl left-4 right-4 md:max-w-md md:w-full p-8 absolute bottom-8 md:left-1/2 md:-translate-x-1/2 flex flex-col'>
+      <div className='absolute bottom-8 left-4 right-4 flex flex-col rounded-3xl bg-slate-200 p-8 md:left-1/2 md:w-full md:max-w-md md:-translate-x-1/2'>
         <p>{avatar.message}</p>
         <Button
           onClick={() => onClick(avatar)}
           variant='ghost'
-          className='self-end -mr-4 -mb-4'
+          className='-mb-4 -mr-4 self-end'
         >
           <ChevronDown />
         </Button>

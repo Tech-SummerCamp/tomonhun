@@ -12,51 +12,51 @@ export function ZukanClientPage({ avatars }: { avatars: Avatar[] }) {
   const [tagList, setTagList] = useState(false);
 
   return (
-    <div className='lg:grid lg:grid-cols-2 max-lg:relative'>
-      <div className='lg:container mx-auto h-screen overflow-y-scroll'>
+    <div className='max-lg:relative lg:grid lg:grid-cols-2'>
+      <div className='mx-auto h-screen overflow-y-scroll lg:container'>
         <div className='sticky top-0 bg-white'>
           <div className='flex items-stretch justify-center gap-2'>
             <Button
               variant='ghost'
-              className='text-lg relative bg-transparent'
+              className='relative bg-transparent text-lg'
               size='lg'
               onClick={() => setTagList(true)}
             >
               タグ
               {tagList && (
-                <div className='absolute h-1 bottom-0 left-8 right-8 bg-green-300 rounded-lg' />
+                <div className='absolute bottom-0 left-8 right-8 h-1 rounded-lg bg-green-300' />
               )}
             </Button>
             <Button
               variant='ghost'
-              className='text-lg relative bg-transparent'
+              className='relative bg-transparent text-lg'
               size='lg'
               onClick={() => setTagList(false)}
             >
               ともん
               {!tagList && (
-                <div className='absolute h-1 bottom-0 left-8 right-8 bg-green-300 rounded-lg' />
+                <div className='absolute bottom-0 left-8 right-8 h-1 rounded-lg bg-green-300' />
               )}
             </Button>
           </div>
         </div>
-        <ul className='flex gap-x-4 gap-y-6 flex-wrap justify-center mt-4'>
+        <ul className='mt-4 flex flex-wrap justify-center gap-x-4 gap-y-6'>
           {avatars.map((avatar, index) => (
             <li
               key={index}
               className={cn(
-                'max-w-32 hover:bg-gray-200 rounded-[12px]',
+                'max-w-32 rounded-[12px] hover:bg-gray-200',
                 avatar === selected ? 'bg-gray-100' : 'bg-transparent',
               )}
               onClick={() => setSelected(avatar)}
             >
-              <h2 className='text-center mb-2'>Lv. 1</h2>
+              <h2 className='mb-2 text-center'>Lv. 1</h2>
               <img
                 src={avatar.imageUrl}
                 alt={avatar.name}
                 className='pointer-events-none select-none'
               />
-              <h2 className='text-center bg-gray-200 rounded-full mt-2'>
+              <h2 className='mt-2 rounded-full bg-gray-200 text-center'>
                 {avatar.name}
               </h2>
             </li>
@@ -64,20 +64,20 @@ export function ZukanClientPage({ avatars }: { avatars: Avatar[] }) {
         </ul>
       </div>
 
-      <div className='max-h-screen overflow-y-scroll relative max-lg:bg-white max-lg:absolute max-lg:top-0 max-lg:left-0 max-lg:right-0'>
+      <div className='relative max-h-screen overflow-y-scroll max-lg:absolute max-lg:left-0 max-lg:right-0 max-lg:top-0 max-lg:bg-white'>
         {selected !== null && (
           <>
             <Button
               onClick={() => setSelected(null)}
               variant='outline'
-              className='rounded-full p-2 absolute top-2 left-2 z-10'
+              className='absolute left-2 top-2 z-10 rounded-full p-2'
             >
               <ChevronLeft />
             </Button>
             <Button
               onClick={() => setSelected(null)}
               variant='outline'
-              className='rounded-full p-2 absolute top-2 right-2 z-10'
+              className='absolute right-2 top-2 z-10 rounded-full p-2'
             >
               <UserRound />
             </Button>
@@ -85,7 +85,7 @@ export function ZukanClientPage({ avatars }: { avatars: Avatar[] }) {
           </>
         )}
         {selected === null && (
-          <div className='max-lg:hidden h-full flex justify-center items-center'>
+          <div className='flex h-full items-center justify-center max-lg:hidden'>
             <p className='text-xl font-bold'>選択されてないよ</p>
           </div>
         )}
